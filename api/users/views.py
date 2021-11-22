@@ -62,7 +62,7 @@ class UserDetails(Resource):
         user.update(api.payload)
         current_app.db.session.commit()
 
-        return UserSchema().dump(user), 204
+        return UserSchema().dump(user.first()), 202
 
     @api.response(404, 'User not found')
     @api.response(204, 'Success')
