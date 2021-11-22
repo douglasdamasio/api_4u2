@@ -1,5 +1,6 @@
 from api import setup as setup_api
 from flask import Flask
+from flask_jwt_extended import JWTManager
 from flask_migrate import Migrate
 from settings import Settings
 
@@ -14,7 +15,8 @@ def create_app():
     setup_db(app)
     setup_ma(app)
     setup_api(app)
-    
+
     Migrate(app, app.db)
+    JWTManager(app)
 
     return app
