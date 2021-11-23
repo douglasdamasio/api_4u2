@@ -11,7 +11,7 @@ auth_payload = api.model('AuthPayload', {
     'password': fields.String
 })
 
-jwt_payload = api.model('JwtPayload', {
+jwt_response = api.model('JwtPayload', {
     'access_token': fields.String,
 })
 
@@ -20,7 +20,7 @@ jwt_payload = api.model('JwtPayload', {
 class Authentication(Resource):
     @api.expect(auth_payload)
     @api.response(400, 'Fail')
-    @api.response(200, 'Success', jwt_payload)
+    @api.response(200, 'Success', jwt_response)
     def post(self):
         try:
             user = UserSchema().load(api.payload)
