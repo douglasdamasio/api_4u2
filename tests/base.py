@@ -1,5 +1,4 @@
 from builtins import classmethod
-from typing import Dict
 from unittest import TestCase, mock
 
 from flask.helpers import url_for
