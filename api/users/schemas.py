@@ -10,4 +10,4 @@ class UserSchema(ma.SQLAlchemyAutoSchema):
         load_instance = True
 
     id = fields.Integer(dump_only=True)
-    password = fields.Str(load_only=True)
+    password = fields.String(required=True, load_only=True)

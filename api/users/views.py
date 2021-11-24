@@ -5,7 +5,7 @@ from api.users.schemas import UserSchema
 from flask_restx import Namespace, Resource, fields
 from marshmallow import ValidationError
 
-api = Namespace('users', description='Usuários da API')
+api = Namespace('user', description='System users')
 
 user_create_payload = api.model('UserCreatePayload', {
     'username': fields.String,
@@ -56,7 +56,7 @@ class UserDetails(Resource):
     @api.response(204, 'Success', user_payload)
     def put(self, id: int):
         user = UserModel.query.filter_by(id=id)
-        if not user:
+        if not user.count():
             return {'message': 'User not found'}, 404
 
         user.update(api.payload)
@@ -68,7 +68,7 @@ class UserDetails(Resource):
     @api.response(204, 'Success')
     def delete(self, id: int):
         user = UserModel.query.filter_by(id=id)
-        if not user:
+        if not user.count():
             return {'message': 'User not found'}, 404
 
         user.delete()

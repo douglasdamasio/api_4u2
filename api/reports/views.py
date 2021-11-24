@@ -4,7 +4,7 @@ from flask_jwt_extended import jwt_required
 from api.reports.services import ReportService
 from api.users.models import UserModel
 
-api = Namespace('reports', description='.pdf reports')
+api = Namespace('report', description='.pdf reports')
 
 
 @api.route('/users/')

@@ -27,7 +27,7 @@ class AudioDTO:
     def __repr__(self) -> str:
         return f'<AudioDTO {self.audio_name}>'
 
-    def get_file_type(self):
+    def get_file_type(self) -> str:
         file_type = filetype.guess(self.base64)
 
         if file_type.EXTENSION in ['wav', 'ogg', 'mp3']:
