@@ -30,7 +30,7 @@ class AudioDTO:
     def get_file_type(self) -> str:
         file_type = filetype.guess(self.base64)
 
-        if file_type.EXTENSION in ['wav', 'ogg', 'mp3']:
+        if file_type and file_type.EXTENSION in ['wav', 'ogg', 'mp3']:
             self.base64.seek(0)
             return file_type.EXTENSION
         else:

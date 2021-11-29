@@ -15,4 +15,4 @@ class Settings(object):
 
     REPORT_FOLDER = os.path.join(os.getcwd(), 'api', 'reports', 'outputs')
 
-    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY')
+    JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'same-pass')

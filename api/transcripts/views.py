@@ -40,7 +40,7 @@ class TranscriptList(Resource):
         if not audio.file_type or not audio.base64:
             return {'message': 'Audio file error'}, 400
 
-        user = UserModel.query.filter_by(username=audio.username).first()
+        user = UserModel.query.filter_by(username=api.payload['username']).first()
         if not user:
             return {'message': 'User not found'}, 404
 
@@ -70,10 +70,11 @@ class TranscriptDetail(Resource):
     @api.response(404, 'Transcript not found')
     @api.response(204, 'Success')
     def delete(self, id: int):
-        transcript = TranscriptModel.query.filter_by(id=id).delete()
-        if not transcript:
+        transcript = TranscriptModel.query.filter_by(id=id)
+        if not transcript.count():
             return {'message': 'Transcript not found'}, 404
 
+        transcript.delete()
         current_app.db.session.commit()
 
         return {}, 204

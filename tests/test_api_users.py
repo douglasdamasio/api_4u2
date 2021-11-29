@@ -38,7 +38,7 @@ class UserDetailTestCase(AppTestBase):
         response = self.client.get(url_for('user_user_details', id=1))
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.json['username'], self.user['username'])
+        self.assertEqual(response.json['username'], self.user_data['username'])
 
     def test_put_user_detail_not_found(self):
         response = self.client.put(url_for('user_user_details', id=10), json={})

@@ -13,7 +13,7 @@ class TranscriptService:
             raise UploadFail
 
         try:
-            response = cls._excute_transcribe_job(audio)
+            response = TranscriptDataSource.excute_transcribe_job(audio)
         except JobFail:
             raise JobFail
 
